@@ -1,14 +1,13 @@
-
 ---
 layout:     post
 title:      STL
-subtitle:   (副标题)
-date:       2021/7/13
-author:     Dexter
-header-img: img/the-first.png
-catalog:   true
+subtitle:  
+date:       2021-07-13
+author:     Chen  Jinhao
+header-img: img/post-bg-recitewords.jpg
+catalog: false
 tags:
-    - 往事如烟
+    - 随笔杂谈
 ---
 # STL
 
