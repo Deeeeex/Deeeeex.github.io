@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      C&C++
+title:      2021-07-13-C&C++
 subtitle:   (副标题)
 date:       2021/7/13
 author:     Dexter
