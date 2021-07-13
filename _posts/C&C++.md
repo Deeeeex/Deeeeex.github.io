@@ -1,11 +1,11 @@
 ---
-layout:     post
-title:      C&C++
+layout:     "post"
+title:      "C&C++"
 subtitle:   
 date:       2021-07-13
-author:     Chen Jinhao
+author:     "Chen Jinhao"
 header-img: img/post-bg-recitewords.jpg
-catalog: false
+catalog: true
 tags:
     - 随笔杂谈
 ---
