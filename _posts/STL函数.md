@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      STL函数
+subtitle:   C++学习笔记（六）
+date:       2021-08-18
+author:     Chen Jinhao
+header-img: img/cup-of-coffee-1280537_1920.jpg
+catalog: true
+tags:
+    - C++学习笔记
+---
 ### STL函数（Mooc笔记）
 
 ### 1.排序算法sort
