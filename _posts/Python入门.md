@@ -1,0 +1,247 @@
+# Python入门
+
+### 输入输出
+
+`input()`输入`print()`输出
+
+`end=''`表示输出的结尾
+
+
+
+### 循环语句
+
+for循环与while循环（循环语句也可以有else子句，但break后不执行else子句）
+
+**`range()`函数的使用**
+
+`range(x)`生成`0~(x-1)`的数列
+
+`range(a,b)`从`a`到`(b-1)`
+
+`range(a,b,k)`从`a,a+k,a+2k...(<b)`
+
+**pass语句**一般用于占位，等待键盘中断（`Ctrl+C`）
+
+
+
+### 导入模块与成员
+
+在 `Python` 用 `import` 或者 `from...import` 来导入相应的模块。
+
+将整个模块`(somemodule)`导入，格式为： `import somemodule`
+
+从某个模块中导入某个函数,格式为： `from somemodule import somefunction`
+
+从某个模块中导入多个函数,格式为： `from somemodule import firstfunc, secondfunc, thirdfunc`
+
+将某个模块中的全部函数导入，格式为： `from somemodule import *`
+
+```python
+#导入sys模块
+import sys
+print('================Python import mode==========================')
+print ('命令行参数为:')
+for i in sys.argv:
+	print (i)
+print ('\n python 路径为',sys.path)
+
+#导入sys模块的 argv,path成员
+from sys import argv,path  #  导入特定的成员
+print('================python from import===================================')
+print('path:',path) # 因为已经导入path成员，所以此处引用时不需要加sys.path
+```
+
+
+
+### 数据类型
+
+- Number（数字）
+- String（字符串）
+- List（列表）
+- Tuple（元组）
+- Set（集合）
+- Dictionary（字典）
+
+`Number`有`int,float,bool,complex`四类（利用`isinstance()`可以判断）
+
+```python
+>>> a, b, c, d = 20, 5.5, True, 4+3j
+>>> print(type(a), type(b), type(c), type(d))
+<class 'int'> <class 'float'> <class 'bool'> <class 'complex'>
+```
+
+**变量的计算**
+
+1、Python可以同时为多个变量赋值，如a, b = 1, 2。
+
+2、一个变量可以通过赋值指向不同类型的对象。
+
+3、数值的除法包含两个运算符：**/** 返回一个浮点数，**//** 返回一个整数。
+
+4、在混合计算时，Python会把整型转换成为浮点数。
+
+
+
+### String字符串
+
+1、反斜杠可以用来转义，使用r可以让反斜杠不发生转义。
+
+2、字符串可以用+运算符连接在一起，用*运算符重复。
+
+3、Python中的字符串有两种索引方式，从左往右以0开始，从右往左以-1开始。
+
+4、Python中的字符串不能改变。
+
+
+
+### List列表
+
+不同于`String`,`List`可以修改或更新
+
+如`list1.append()`方法可以添加列表项
+
+- 不过注意`list1.append()`是浅拷贝，需要深拷贝可以用`list1.append(copy.deepcopy(num))`
+
+**列表函数**
+
+- `len(list)`列表元素个数
+- `max(list)`返回列表元素最大值
+- `min(list)`返回列表元素最小值
+- `list(seq)`将元组转化为列表
+
+**列表方法**
+
+- `list.append(obj)`在列表末尾添加新的对象
+
+- `list.count(obj)`统计某个元素在列表中出现的次数
+
+- `list.extend(seq)]`列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）
+
+- `list.index(obj)`从列表中找出某个值第一个匹配项的索引位置
+
+- `list.insert(index,obj)`将对象插入列表
+
+- `list.pop([index=-1])`移除表中的一个元素（默认是最后一个元素）并返回该元素的值
+
+- `list.remove(obj)`移除列表中某个值的第一个匹配项
+
+- `list.reverse()`反向列表中的元素
+
+- `list.sort(key=None, reverse=False)`对列表进行排序
+
+  若要通过指定列表中的元素排序
+
+  ```python
+  # 获取列表的第二个元素
+  def takeSecond(elem):
+      return elem[1]
+  # 列表
+  random = [(2, 2), (3, 4), (4, 1), (1, 3)]
+  # 指定第二个元素排序
+  random.sort(key=takeSecond)
+  ```
+
+- `list.clear()`清空列表
+
+- `list.copy()`复制列表
+
+
+
+### Tuple元组
+
+与列表类似，不同之处在于元组中的元素不能修改，使用`( )`而不是`[ ]`
+
+当元组中只有一个元素时，需要在元素后面添加逗号`,`否则括号会被当作运算符使用
+
+元组的内置函数有`len(tuple)`,`max(tuple)`,`min(tuple)`,`tuple(iterable)`
+
+其中`tuple(iterable)`可以将可迭代系列转换为元组
+
+```python
+>>> list1= ['Google', 'Taobao', 'Runoob', 'Baidu']
+>>> tuple1=tuple(list1)
+>>> tuple1
+('Google', 'Taobao', 'Runoob', 'Baidu')
+```
+
+
+
+### Dictionary字典
+
+- 创建字典
+
+  ```python
+  tinydict = {'name': 'runoob', 'likes': 123, 'url': 'www.runoob.com'}
+  tinydict1 = { 'abc': 456 }
+  tinydict2 = { 'abc': 123, 98.6: 37 }
+  # 使用大括号 {} 来创建空字典
+  emptyDict = {}
+  # 打印字典
+  print(emptyDict)
+  # 查看字典的数量
+  print("Length:", len(emptyDict))
+  # 查看类型
+  print(type(emptyDict))
+  # 使用内建函数 dict() 重建字典
+  emptyDict = dict()
+  ```
+
+**字典内置函数&方法**
+
+- `len(dict)` 元素个数，即键的个数
+- `str(dict)` 输出字典
+- `radiansdict.clear()` 删除字典内所有元素
+- `radiansdict.copy()` 返回一个字典的浅复制
+- `radiansdict.fromkeys()` 创建一个新字典，以序列seq中元素做字典的键，`val`为字典所有键对应的初始值
+- `radiansdict.get(key, default=None)` 返回指定键的值，如果键不在字典中返回 default 设置的默认值
+- `key in dict` 如果键在字典`dict`里返回true，否则返回false
+- `radiansdict.items()` 以列表返回一个视图对象
+- `radiansdict.keys()` 返回一个视图对象
+- `radiansdict.setdefault(key, default=None)` 和`get()`类似, 但如果键不存在于字典中，将会添加键并将值设为`default`
+- `radiansdict.update(dict2)` 把字典`dict2`的键/值对更新到`dict`里
+- `radiansdict.values()` 返回一个视图对象
+- `pop(key[,default\])` 删除字典给定键 `key` 所对应的值，返回值为被删除的值。`key`值必须给出。 否则，返回`default`值
+- `popitem()` 随机返回并删除字典中的最后一对键和值
+
+
+
+### Set集合
+
+集合（set）是一个无序的不重复元素序列
+
+可以使用大括号 `{ }` 或者 `set()` 函数创建集合，注意：创建一个空集合必须用 `set()` 而不是 `{ }`，因为 `{ }` 是用来创建一个空字典
+
+**集合的基本操作**
+
+- 添加元素
+
+  `s.add( x )`添加元素
+
+  或者`s.update()`添加元素，列表，元组，字典等
+
+  ```python
+  >>> thisset = set(("Google", "Runoob", "Taobao"))
+  >>> thisset.update({1,3})
+  >>> print(thisset)
+  {1, 3, 'Google', 'Taobao', 'Runoob'}
+  >>> thisset.update([1,4],[5,6])  
+  >>> print(thisset)
+  {1, 3, 4, 5, 6, 'Google', 'Taobao', 'Runoob'}
+  ```
+
+- 移除元素
+
+  `s.remove( x )`移除元素x,如果元素不存在会发生错误
+
+  `s.discard( x )`移除元素x且不会出错
+
+  `s.pop()`对集合进行无序的排列，然后将这个无序排列集合的左面第一个元素进行删除
+
+- `len(s)`计算集合元素个数
+- `s.clear()`清空集合
+- `x in s`判断x是否在s中
+
+[集合的其他内置方法](www.runoob.com/python3/python3-set.html)
+
+
+
