@@ -6,8 +6,8 @@
  * Register service worker.
  * ========================================================== */
 
-const PRECACHE = 'precache-v1';
-const RUNTIME = 'runtime';
+const PRECACHE = 'precache-v2-academic-homepage';
+const RUNTIME = 'runtime-v2-academic-homepage';
 const HOSTNAME_WHITELIST = [
   self.location.hostname,
   "huangxuan.me",
@@ -95,7 +95,10 @@ self.addEventListener('install', e => {
  */
 self.addEventListener('activate',  event => {
   console.log('service worker activated.')
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    Promise.all(['precache-v1', 'runtime'].map(name => caches.delete(name)))
+      .then(() => self.clients.claim())
+  );
 });
 
 
@@ -106,6 +109,13 @@ self.addEventListener('activate',  event => {
  *  void respondWith(Promise<Response> r);
  */
 self.addEventListener('fetch', event => {
+  // Keep the academic homepage on the network instead of serving an old blog cache.
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin === self.location.origin &&
+      (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html')) {
+    return;
+  }
+
   // logs for debugging
   console.log(`fetch ${event.request.url}`)
   //console.log(` - type: ${event.request.type}; destination: ${event.request.destination}`)
